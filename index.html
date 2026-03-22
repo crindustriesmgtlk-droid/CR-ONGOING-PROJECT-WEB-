@@ -38,7 +38,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 
 /* ── PAGES ── */
 .page{display:none;position:relative;z-index:1;min-height:100vh;padding-top:130px;}
-.page.active{display:block;}
+.page.active{.brand-text .name{display:none;}
 
 /* ── HOME PAGE ── */
 .hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:30px 60px 80px;gap:40px;min-height:90vh;}
@@ -238,7 +238,7 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 .fbrand{display:flex;align-items:center;gap:12px;}
 .flogo{width:46px;height:46px;object-fit:contain;border-radius:50%;animation:cr-glow-breathe-soft 3.5s ease-in-out infinite;}
 .fbt .fn{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--white);display:block;}
-.fbt .fs{font-size:9px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;}
+.fbt .fs{font-size:9px;letter-spacing:2px;color:var(--cyan);.brand-text .sub{display:none;}
 .flinks{list-style:none;display:flex;gap:24px;flex-wrap:wrap;}
 .flinks a{text-decoration:none;font-size:11px;letter-spacing:1.5px;color:rgba(207,216,220,.45);transition:color .3s;text-transform:uppercase;}
 .flinks a:hover{color:var(--accent);}
