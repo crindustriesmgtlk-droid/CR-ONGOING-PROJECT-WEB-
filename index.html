@@ -16,8 +16,8 @@ body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--silver);o
 nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:10px 50px;background:rgba(2,9,18,.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,229,255,.15);}
 .nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none;}
 .nav-logo-img{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 18px rgba(0,229,255,.8));border-radius:50%;border:1px solid rgba(0,229,255,.2);}
-.brand-text .name{display:none;}
-.brand-text .sub{display:none;}
+.brand-text .name{font-family:'Orbitron',monospace;font-size:17px;font-weight:700;letter-spacing:3px;color:var(--white);display:block;}
+.brand-text .sub{font-size:9px;letter-spacing:2.5px;color:var(--cyan);text-transform:uppercase;}
 .nav-tabs{display:flex;gap:4px;list-style:none;align-items:center;}
 .nav-tabs li a,.nav-tabs li button{text-decoration:none;color:rgba(207,216,220,.65);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:all .3s;padding:8px 14px;border-radius:4px;border:none;background:transparent;cursor:pointer;font-family:'Inter',sans-serif;}
 .nav-tabs li a:hover,.nav-tabs li button:hover{color:var(--accent);background:rgba(0,229,255,.06);}
@@ -639,13 +639,7 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
   <footer>
     <div class="fbrand"><div class="cr-footer-logo-wrap"><img class="cr-footer-logo-img" src="logo.png"></div><div class="fbt"><span class="fn">CR INDUSTRIES</span><span class="fs">Financial Innovation &amp; Growth</span></div></div></div><div class="fbt"><span class="fn">CR INDUSTRIES</span><span class="fs">Financial Innovation &amp; Growth</span></div></div><div class="fbt"><span class="fn">CR INDUSTRIES</span><span class="fs">Financial Innovation</span></div></div></div>
     </div>
-    <ul class="flinks">
-      <li><a href="#" onclick="showPage('home')">Home</a></li>
-      <li><a href="#" onclick="showPage('markets')">Markets</a></li>
-      <li><a href="#" onclick="showPage('ib')">IB Program</a></li>
-      <li><a href="#" onclick="showPage('community')">Community</a></li>
-      <li><a href="#" onclick="showPage('plans')">Plans</a></li>
-    </ul>
+    <ul class="flinks"><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('markets')">Markets</a></li><li><a href="#" onclick="showPage('whyus')">Why Us</a></li><li><a href="#" onclick="showPage('ib')">IB Program</a></li><li><a href="#" onclick="showPage('community')">Community</a></li><li><a href="#" onclick="showPage('plans')">Plans</a></li></ul>
     <div class="fcopy">&#169; 2026 CR Industries. All Rights Reserved.</div>
   </footer>
 </div>
