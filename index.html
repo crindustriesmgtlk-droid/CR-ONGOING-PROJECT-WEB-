@@ -1310,5 +1310,5 @@ function closeMobileNav() {
   }
 }
 </script>
-</body>
+<script>async function handleNLSubmit(e){e.preventDefault();const form=e.target;const btn=form.querySelector(".nl-btn");const email=form.querySelector(".nl-input").value;btn.textContent="Sending...";btn.disabled=true;try{await fetch("https://hook.eu1.make.com/13rw1rdsrm6ftmt2hro9rhe4jejbmjn7",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email})});form.style.display="none";document.getElementById("nl-success").style.display="block";}catch(err){btn.textContent="Try Again";btn.disabled=false;}}</script></body>
 </html>
