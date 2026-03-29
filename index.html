@@ -906,4 +906,410 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
     </div>
   </section>
   <footer><div class="fbrand"><div class="cr-footer-logo-wrap"><img class="cr-footer-logo-img" src="logo.png"></div><div class="fbt"><span class="fn">CR INDUSTRIES</span><span class="fs">Financial Innovation &amp; Growth</span></div></div><ul class="flinks"><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('markets')">Markets</a></li><li><a href="#" onclick="showPage('whyus')">Why Us</a></li><li><a href="#" onclick="showPage('ib')">IB Program</a></li><li><a href="#" onclick="showPage('community')">Community</a></li><li><a href="#" onclick="showPage('plans')">Plans</a></li></ul><p class="fcopy">&copy; 2026 CR Industries. All Rights Reserved.</p></footer>
-</body></html>
+</div>
+
+<!-- ════════════════ MODAL ════════════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalDirect()">&#10005;</button>
+    <h2 id="modal-title">GET STARTED</h2>
+    <div class="modal-sub" id="modal-sub">Create your CR Industries account today</div>
+    <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your full name"></div>
+    <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"></div>
+    <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" placeholder="+1 234 567 8900"></div>
+    <div class="form-group" id="modal-plan-group" style="display:none;"><label>Select Plan</label>
+      <select id="modal-plan-select">
+        <option>Starter — $250 min</option>
+        <option>Growth — $1,000 min</option>
+        <option>Elite — $5,000 min</option>
+        <option>Institutional — Custom</option>
+      </select>
+    </div>
+    <div class="form-group" id="modal-ib-group" style="display:none;"><label>Trading Experience</label>
+      <select><option>0–1 years</option><option>1–3 years</option><option>3–5 years</option><option>5+ years</option></select>
+    </div>
+    <button class="form-submit" id="modal-btn">SUBMIT APPLICATION</button>
+  </div>
+</div>
+
+<script>
+// ── PAGE SWITCHING ──
+function showPage(name, btnEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+  if(btnEl && btnEl.classList) { btnEl.classList.add('active'); }
+  else {
+    const map = {home:0,markets:1,whyus:2,ib:3,community:4,plans:5};
+    const btns = document.querySelectorAll('.nav-tabs button');
+    if(btns[map[name]]) btns[map[name]].classList.add('active');
+  }
+  window.scrollTo(0,0);
+  if(name === 'markets') initTVWidgets();
+}
+
+// ── MODAL ──
+function openModal(type) {
+  const overlay = document.getElementById('modal-overlay');
+  const title = document.getElementById('modal-title');
+  const sub = document.getElementById('modal-sub');
+  const planG = document.getElementById('modal-plan-group');
+  const ibG = document.getElementById('modal-ib-group');
+  const btn = document.getElementById('modal-btn');
+  planG.style.display = 'none'; ibG.style.display = 'none';
+  if(type === 'ib') {
+    title.textContent = 'IB APPLICATION'; sub.textContent = 'Join our Introducing Broker Program';
+    ibG.style.display = 'block'; btn.textContent = 'SUBMIT IB APPLICATION';
+  } else if(type === 'contact') {
+    title.textContent = 'CONTACT US'; sub.textContent = 'Our team will reach out within 24 hours';
+    btn.textContent = 'SEND MESSAGE';
+  } else {
+    const planMap = {'plan-starter':'Starter Plan','plan-growth':'Growth Plan','plan-elite':'Elite Plan'};
+    title.textContent = 'GET STARTED'; sub.textContent = planMap[type] ? 'Selected: ' + planMap[type] : 'Create your CR Industries account';
+    planG.style.display = 'block'; btn.textContent = 'OPEN ACCOUNT';
+    if(type === 'plan-growth') document.getElementById('modal-plan-select').selectedIndex = 1;
+    if(type === 'plan-elite') document.getElementById('modal-plan-select').selectedIndex = 2;
+  }
+  overlay.classList.add('open');
+}
+function closeModal(e) { if(e.target === document.getElementById('modal-overlay')) closeModalDirect(); }
+function closeModalDirect() { document.getElementById('modal-overlay').classList.remove('open'); }
+
+// ── CANVAS PARTICLES ──
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, pts = [];
+function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize(); window.addEventListener('resize', ()=>{ resize(); initPts(); });
+class Dot {
+  constructor(){ this.reset(); }
+  reset(){ this.x=Math.random()*W; this.y=Math.random()*H; this.vx=(Math.random()-.5)*.3; this.vy=(Math.random()-.5)*.3; this.r=Math.random()*1.2+.4; this.a=Math.random()*.35+.08; }
+  update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>W||this.y<0||this.y>H) this.reset(); }
+  draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=`rgba(0,229,255,${this.a})`; ctx.fill(); }
+}
+function initPts(){ pts=[]; const n=Math.floor(W*H/12000); for(let i=0;i<n;i++) pts.push(new Dot()); }
+initPts();
+function drawConns(){
+  for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+    const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
+    if(d<110){ ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.strokeStyle=`rgba(0,229,255,${(1-d/110)*.09})`; ctx.lineWidth=.4; ctx.stroke(); }
+  }
+}
+function drawGrid(){
+  ctx.strokeStyle='rgba(0,229,255,0.022)'; ctx.lineWidth=.4;
+  for(let x=0;x<W;x+=80){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for(let y=0;y<H;y+=80){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+}
+(function anim(){
+  ctx.clearRect(0,0,W,H);
+  const g1=ctx.createRadialGradient(W*.15,H*.25,0,W*.15,H*.25,W*.65);
+  g1.addColorStop(0,'rgba(13,71,161,0.1)'); g1.addColorStop(1,'rgba(2,9,18,0)');
+  ctx.fillStyle=g1; ctx.fillRect(0,0,W,H);
+  const g2=ctx.createRadialGradient(W*.85,H*.75,0,W*.85,H*.75,W*.5);
+  g2.addColorStop(0,'rgba(0,180,216,0.05)'); g2.addColorStop(1,'rgba(2,9,18,0)');
+  ctx.fillStyle=g2; ctx.fillRect(0,0,W,H);
+  drawGrid(); pts.forEach(p=>{ p.update(); p.draw(); }); drawConns();
+  requestAnimationFrame(anim);
+})();
+
+// ── TRADINGVIEW WIDGETS ──
+let tvLoaded = false;
+function initTVWidgets() {
+  if(tvLoaded) return;
+  tvLoaded = true;
+
+  // Advanced Chart
+  new TradingView.widget({
+    "autosize": true,
+    "symbol": "FX:EURUSD",
+    "interval": "D",
+    "timezone": "Etc/UTC",
+    "theme": "dark",
+    "style": "1",
+    "locale": "en",
+    "toolbar_bg": "#020912",
+    "enable_publishing": false,
+    "hide_side_toolbar": false,
+    "allow_symbol_change": true,
+    "container_id": "tradingview_main",
+    "height": 500,
+    "studies": ["RSI@tv-basicstudies","MACD@tv-basicstudies"]
+  });
+
+  // Forex Cross Rates
+  new TradingView.widget({
+    "width": "100%",
+    "height": 400,
+    "source": "ForexCrossRates",
+    "currencies": ["EUR","USD","JPY","GBP","CHF","AUD","CAD","NZD"],
+    "isTransparent": false,
+    "colorTheme": "dark",
+    "locale": "en",
+    "container_id": "tv-forex-cross"
+  });
+
+  // Market Overview
+  new TradingView.widget({
+    "colorTheme": "dark",
+    "dateRange": "12M",
+    "showChart": true,
+    "locale": "en",
+    "largeChartUrl": "",
+    "isTransparent": false,
+    "showSymbolLogo": true,
+    "showFloatingTooltip": false,
+    "width": "100%",
+    "height": 400,
+    "tabs": [
+      {
+        "title": "Forex",
+        "symbols": [
+          {"s":"FX:EURUSD"},{"s":"FX:GBPUSD"},{"s":"FX:USDJPY"},{"s":"FX:XAUUSD"},{"s":"FX:USDCHF"}
+        ]
+      },
+      {
+        "title": "Crypto",
+        "symbols": [
+          {"s":"BITSTAMP:BTCUSD"},{"s":"BITSTAMP:ETHUSD"},{"s":"COINBASE:LTCUSD"}
+        ]
+      },
+      {
+        "title": "Indices",
+        "symbols": [
+          {"s":"FOREXCOM:SPXUSD"},{"s":"FOREXCOM:NSXUSD"},{"s":"FOREXCOM:DJI"}
+        ]
+      }
+    ],
+    "container_id": "tv-market-overview"
+  });
+}
+
+// Load TradingView script
+const tvScript = document.createElement('script');
+tvScript.src = 'https://s3.tradingview.com/tv.js';
+tvScript.async = true;
+document.head.appendChild(tvScript);
+
+// ── LIVE PRICES ──
+const prices = { eur:1.1600, gbp:1.3305, btc:67054, gold:5162.10, eth:1964, ltc:72.40, jpy:149.32, chf:0.8901, aud:0.6532, cad:1.3428 };
+const changes = { eur:-0.75, gbp:-0.75, btc:1.96, gold:0.95, eth:0.95, ltc:2.11, jpy:-0.31, chf:-0.12, aud:0.22, cad:-0.08 };
+
+function fmt(v,d){ return parseFloat(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+
+function setCard(vid,cid,price,chg,decimals){
+  const vEl=document.getElementById(vid), cEl=document.getElementById(cid);
+  if(!vEl||!cEl) return;
+  vEl.textContent = decimals===0 ? fmt(price,0) : fmt(price,decimals);
+  const up=chg>=0;
+  cEl.className='pc-chg '+(up?'up':'dn');
+  cEl.innerHTML=(up?'&#9650; +':'&#9660; ')+Math.abs(chg).toFixed(2)+'%';
+  const card=vEl.closest('.pc');
+  if(card){ card.classList.remove('fg','fr'); void card.offsetWidth; card.classList.add(up?'fg':'fr'); }
+}
+
+function setTableRow(key, price, chg, decimals){
+  const tp = document.getElementById('t-'+key);
+  const tc = document.getElementById('tc-'+key);
+  if(!tp||!tc) return;
+  tp.textContent = decimals===0 ? fmt(price,0) : fmt(price,decimals);
+  const up = chg >= 0;
+  tc.className = 'mts-chg ' + (up ? 'up' : 'dn');
+  tc.textContent = (up ? '+' : '') + chg.toFixed(2) + '%';
+}
+
+function updateAllTables(){
+  setTableRow('eur', prices.eur, changes.eur, 4);
+  setTableRow('gbp', prices.gbp, changes.gbp, 4);
+  setTableRow('jpy', prices.jpy, changes.jpy, 2);
+  setTableRow('chf', prices.chf, changes.chf, 4);
+  setTableRow('aud', prices.aud, changes.aud, 4);
+  setTableRow('cad', prices.cad, changes.cad, 4);
+  setTableRow('gold', prices.gold, changes.gold, 2);
+  setTableRow('btc', prices.btc, changes.btc, 0);
+  setTableRow('eth', prices.eth, changes.eth, 2);
+  setTableRow('ltc', prices.ltc, changes.ltc, 2);
+}
+
+async function fetchCrypto(){
+  try{
+    // Try CoinGecko first
+    const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,litecoin&vs_currencies=usd&include_24hr_change=true',{cache:'no-cache'});
+    if(!r.ok) throw new Error('CoinGecko failed');
+    const d=await r.json();
+    if(d.bitcoin){ prices.btc=d.bitcoin.usd; changes.btc=+(d.bitcoin.usd_24h_change||0).toFixed(2); }
+    if(d.ethereum){ prices.eth=d.ethereum.usd; changes.eth=+(d.ethereum.usd_24h_change||0).toFixed(2); }
+    if(d.litecoin){ prices.ltc=d.litecoin.usd; changes.ltc=+(d.litecoin.usd_24h_change||0).toFixed(2); }
+    setCard('v-btc','c-btc',prices.btc,changes.btc,0);
+    setCard('v-eth','c-eth',prices.eth,changes.eth,2);
+    updateTicker(); updateAllTables();
+  }catch(e){
+    // Fallback: Binance API (no CORS restrictions)
+    try{
+      const [btcR,ethR,ltcR]=await Promise.all([
+        fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT'),
+        fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=ETHUSDT'),
+        fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=LTCUSDT')
+      ]);
+      const [btc,eth,ltc]=await Promise.all([btcR.json(),ethR.json(),ltcR.json()]);
+      if(btc.lastPrice){ prices.btc=+btc.lastPrice; changes.btc=+parseFloat(btc.priceChangePercent).toFixed(2); }
+      if(eth.lastPrice){ prices.eth=+eth.lastPrice; changes.eth=+parseFloat(eth.priceChangePercent).toFixed(2); }
+      if(ltc.lastPrice){ prices.ltc=+ltc.lastPrice; changes.ltc=+parseFloat(ltc.priceChangePercent).toFixed(2); }
+      setCard('v-btc','c-btc',prices.btc,changes.btc,0);
+      setCard('v-eth','c-eth',prices.eth,changes.eth,2);
+      updateTicker(); updateAllTables();
+    }catch(e2){}
+  }
+}
+
+async function fetchForex(){
+  try{
+    // Frankfurter gives EUR/GBP/etc per 1 USD
+    const r=await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR,GBP,JPY,CHF,AUD,CAD',{cache:'no-cache'});
+    if(!r.ok) throw new Error('Frankfurter failed');
+    const d=await r.json();
+    if(d.rates){
+      // EUR/USD = how many USD per 1 EUR, so 1/rate
+      prices.eur = +(1/d.rates.EUR).toFixed(5);
+      prices.gbp = +(1/d.rates.GBP).toFixed(5);
+      prices.jpy = +d.rates.JPY.toFixed(2);   // USD/JPY direct
+      prices.chf = +(1/d.rates.CHF).toFixed(5);
+      prices.aud = +(1/d.rates.AUD).toFixed(5);
+      prices.cad = +d.rates.CAD.toFixed(5);    // USD/CAD direct
+      setCard('v-eur','c-eur',prices.eur,changes.eur,4);
+      setCard('v-gbp','c-gbp',prices.gbp,changes.gbp,4);
+      updateTicker(); updateAllTables();
+    }
+  }catch(e){
+    // Fallback: ExchangeRate API
+    try{
+      const r2=await fetch('https://open.er-api.com/v6/latest/USD',{cache:'no-cache'});
+      const d2=await r2.json();
+      if(d2.rates){
+        prices.eur = +(1/d2.rates.EUR).toFixed(5);
+        prices.gbp = +(1/d2.rates.GBP).toFixed(5);
+        prices.jpy = +d2.rates.JPY.toFixed(2);
+        prices.chf = +(1/d2.rates.CHF).toFixed(5);
+        prices.aud = +(1/d2.rates.AUD).toFixed(5);
+        prices.cad = +d2.rates.CAD.toFixed(5);
+        setCard('v-eur','c-eur',prices.eur,changes.eur,4);
+        setCard('v-gbp','c-gbp',prices.gbp,changes.gbp,4);
+        updateTicker(); updateAllTables();
+      }
+    }catch(e2){}
+  }
+}
+
+async function fetchGold(){
+  let goldFound = false;
+  // Try metals.live (no minimum price check)
+  try{
+    const r=await fetch('https://api.metals.live/v1/spot/gold',{cache:'no-cache'});
+    const d=await r.json();
+    if(d&&d[0]&&d[0].gold&&d[0].gold>100){
+      prices.gold=+d[0].gold;
+      goldFound=true;
+    }
+  }catch(e){}
+  
+  // Fallback: try goldapi via open proxy approach or just use Binance PAXG
+  if(!goldFound){
+    try{
+      const r=await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=PAXGUSDT');
+      const d=await r.json();
+      if(d.lastPrice&&+d.lastPrice>100){
+        prices.gold=+parseFloat(d.lastPrice).toFixed(2);
+        changes.gold=+parseFloat(d.priceChangePercent).toFixed(2);
+        setCard('v-gold','c-gold',prices.gold,changes.gold,2);
+        updateTicker(); updateAllTables();
+        return;
+      }
+    }catch(e){}
+  }
+  
+  if(prices.gold>0){
+    // Use a reasonable prior reference for daily change tracking
+    const ref = sessionStorage.getItem('goldRef');
+    if(!ref){ sessionStorage.setItem('goldRef', prices.gold); changes.gold=0; }
+    else { const refVal=+ref; changes.gold=+((prices.gold-refVal)/refVal*100).toFixed(2); }
+  }
+  setCard('v-gold','c-gold',prices.gold,changes.gold,2);
+  updateTicker(); updateAllTables();
+}
+
+function buildTickerHTML(){
+  const pairs=[
+    {p:'EUR/USD',v:fmt(prices.eur,4),c:changes.eur},{p:'GBP/USD',v:fmt(prices.gbp,4),c:changes.gbp},
+    {p:'USD/JPY',v:fmt(prices.jpy,2),c:changes.jpy},{p:'XAU/USD',v:fmt(prices.gold,2),c:changes.gold},
+    {p:'BTC/USD',v:fmt(prices.btc,0),c:changes.btc},{p:'ETH/USD',v:fmt(prices.eth,2),c:changes.eth},
+    {p:'USD/CHF',v:fmt(prices.chf,4),c:changes.chf},{p:'AUD/USD',v:fmt(prices.aud,4),c:changes.aud},
+    {p:'USD/CAD',v:fmt(prices.cad,4),c:changes.cad},{p:'LTC/USD',v:fmt(prices.ltc,2),c:changes.ltc},
+  ];
+  const full=[...pairs,...pairs];
+  return full.map(d=>`<div class="ti"><span class="tp">${d.p}</span><span class="tv">${d.v}</span><span class="${d.c>=0?'tup':'tdn'}">${d.c>=0?'&#9650;':'&#9660;'} ${Math.abs(d.c).toFixed(2)}%</span><span class="tsep">|</span></div>`).join('');
+}
+function updateTicker(){ document.getElementById('ttrack').innerHTML=buildTickerHTML(); }
+updateTicker(); updateAllTables();
+
+// ── REAL-TIME PRICE ENGINE ──
+// Crypto: CoinGecko every 10s | Forex: Frankfurter every 8s | Gold: metals.live every 12s
+// Display refreshes every 1s using latest fetched values
+
+async function refreshAll(){
+  await Promise.all([fetchCrypto(), fetchForex(), fetchGold()]);
+}
+
+// Initial load — fetch everything immediately in parallel
+refreshAll();
+
+// Aggressive refresh schedule — as fast as free APIs allow
+setInterval(fetchCrypto, 10000);   // crypto every 10s
+setInterval(fetchForex,  8000);    // forex every 8s
+setInterval(fetchGold,   12000);   // gold every 12s
+
+// Every 1 second: redraw UI with latest values (no fake simulation)
+setInterval(()=>{
+  setCard('v-btc','c-btc',prices.btc,changes.btc,0);
+  setCard('v-gold','c-gold',prices.gold,changes.gold,2);
+  setCard('v-eur','c-eur',prices.eur,changes.eur,4);
+  setCard('v-gbp','c-gbp',prices.gbp,changes.gbp,4);
+  setCard('v-eth','c-eth',prices.eth,changes.eth,2);
+  updateTicker();
+  updateAllTables();
+}, 1000);
+
+// ── SCROLL REVEAL ──
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── NAV SHADOW ──
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.boxShadow = window.scrollY > 20 ? '0 4px 40px rgba(0,0,0,.6)' : 'none';
+});
+function toggleMobileNav() {
+  const hamburger = document.getElementById('hamburger');
+  const navMobile = document.getElementById('navMobile');
+  hamburger.classList.toggle('open');
+  navMobile.classList.toggle('open');
+  document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileNav() {
+  const hamburger = document.getElementById('hamburger');
+  const navMobile = document.getElementById('navMobile');
+  hamburger.classList.remove('open');
+  navMobile.classList.remove('open');
+  document.body.style.overflow = '';
+  // sync active state in mobile nav
+  const activePage = document.querySelector('.page.active');
+  if (activePage) {
+    const pageId = activePage.id.replace('page-','');
+    document.querySelectorAll('.nav-mobile li button:not(.nav-cta-mobile)').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes("'"+pageId+"'")) {
+        btn.classList.add('active');
+      }
+    });
+  }
+}
+</script>
+<script>async function handleNLSubmit(e){e.preventDefault();const form=e.target;const btn=form.querySelector(".nl-btn");const email=form.querySelector(".nl-input").value;btn.textContent="Sending...";btn.disabled=true;try{await fetch("https://hook.eu1.make.com/5nvqg3nakxagvtrfu98nu09cuqd5qxr6",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email})});form.style.display="none";document.getElementById("nl-success").style.display="block";}catch(err){btn.textContent="Try Again";btn.disabled=false;}}</script><script>async function sendToMake(){const email=document.getElementById("nl-email").value;if(!email)return;const btn=document.querySelector(".nl-btn");btn.textContent="Sending...";btn.disabled=true;try{await fetch("https://hook.eu1.make.com/5nvqg3nakxagvtrfu98nu09cuqd5qxr6",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email})});document.getElementById("nl-form").style.display="none";document.getElementById("nl-success").style.display="block";}catch(e){btn.textContent="Try Again";btn.disabled=false;}}</script><section class="nl-sec"><div class="nl-inner"><div class="stag" style="justify-content:center;">Newsletter</div><h2 class="stitle" style="text-align:center;">Stay Ahead of the Markets</h2><p class="ssub" style="text-align:center;margin:0 auto 0;">Get weekly market insights and CR Industries updates straight to your inbox.</p><div class="nl-form"><input class="nl-input" type="email" id="nl-email" placeholder="Enter your email address"><button class="nl-btn" onclick="nlSubmit()">Subscribe</button></div><p class="nl-note">No spam. Unsubscribe anytime.</p><div class="nl-success" id="nl-success" style="display:none;">You are subscribed! Welcome to CR Industries.</div></div></section><script>function nlSubmit(){const e=document.getElementById("nl-email").value;if(!e||!e.includes("@")){alert("Please enter a valid email");return;}const b=document.querySelector(".nl-btn");b.textContent="Sending...";b.disabled=true;fetch("https://hook.eu1.make.com/5nvqg3nakxagvtrfu98nu09cuqd5qxr6",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:e})}).then(()=>{document.querySelector(".nl-form").style.display="none";document.getElementById("nl-success").style.display="block";document.querySelector(".nl-note").style.display="none";}).catch(()=>{b.textContent="Try Again";b.disabled=false;});}</script></body>
+</html>
