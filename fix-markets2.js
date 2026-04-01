@@ -1,0 +1,1 @@
+const fs=require("fs");let c=fs.readFileSync("index.html","utf8");
