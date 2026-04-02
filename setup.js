@@ -1,0 +1,1 @@
+fs.writeFileSync(".gitignore",".env\n.env.local\n.env*.local\nnode_modules/\n.vercel/\n*.log\n.DS_Store\nThumbs.db\n");\nfs.writeFileSync(".env.local","MAKE_WEBHOOK_URL=https://hook.eu1.make.com/5nvqg3nakxagvtrfu98nu09cuqd5qxr6\nMAKE_UNSUB_WEBHOOK_URL=YOUR_UNSUB_WEBHOOK_HERE\n");\nif(!fs.existsSync("api")){fs.mkdirSync("api");}\n
