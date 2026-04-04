@@ -627,6 +627,20 @@ body:has(#page-markets.active) .ticker{display:none!important}
 #page-markets .stag{display:none!important}
 #page-markets .stitle{display:none!important}
 #page-markets .ssub{display:none!important}
+
+/* === MARKETS CLEAN === */
+#page-markets .markets-header{display:none!important}
+#page-markets .stag{display:none!important}
+#page-markets .stitle{display:none!important}
+#page-markets .ssub{display:none!important}
+#page-markets .markets-page{padding:0!important}
+#page-markets .markets-page>div{display:flex!important;flex-direction:row!important;border:none!important;border-radius:0!important;min-height:calc(100vh - 130px)!important;overflow:hidden!important}
+#page-markets .tabs{display:flex!important;flex-direction:column!important;width:240px!important;min-width:240px!important;flex-shrink:0!important;background:rgba(2,9,18,.98)!important;border-right:1px solid rgba(0,229,255,.08)!important;border-bottom:none!important;padding:48px 0!important;overflow:visible!important;grid-template-columns:unset!important;gap:0!important}
+#page-markets .tab{padding:20px 32px!important;text-align:left!important;font-size:12px!important;letter-spacing:1.5px!important;border:none!important;border-left:3px solid transparent!important;white-space:nowrap!important;color:rgba(207,216,220,.45)!important;background:transparent!important;transform:none!important;box-shadow:none!important;border-radius:0!important}
+#page-markets .tab:hover{color:var(--accent)!important;border-left:3px solid rgba(0,229,255,.4)!important;background:rgba(0,229,255,.04)!important;transform:none!important}
+#page-markets .tab.on{color:var(--accent)!important;border-left:3px solid var(--accent)!important;background:rgba(0,229,255,.07)!important;box-shadow:none!important;transform:none!important}
+#page-markets .panel.show{flex:1!important;display:flex!important;flex-direction:column!important}
+#page-markets .tag{display:none!important}
 </style>
 <script defer src="https://cdn.vercel-insights.com/v1/speed-insights/script.js"></script></head>
 <body>
@@ -1136,7 +1150,7 @@ function sw(id,btn){
 
 <script>
 // ── PAGE SWITCHING ──
-function showPage(id,el){document.querySelector(".ticker").style.display=id==="home"?"":"none";return _showPage(id,el);}function _showPage(name, btnEl) {
+function showPage(id,el){var t=document.querySelector(".ticker");if(t)t.style.display=id==="home"?"":"none";return _sp(id,el);}function _sp(id,el){document.querySelector(".ticker").style.display=id==="home"?"":"none";return _showPage(id,el);}function _showPage(name, btnEl) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
