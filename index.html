@@ -619,6 +619,14 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 #page-markets .tab.on{color:var(--accent)!important;border-left:3px solid var(--accent)!important;background:rgba(0,229,255,.07)!important;box-shadow:none!important;transform:none!important}
 #page-markets .panel.show{flex:1!important;display:flex!important;flex-direction:column!important}
 #page-markets .tag{display:none!important}
+
+.page:not(#page-home) ~ * .ticker{display:none}
+#page-markets.active ~ .ticker{display:none!important}
+body:has(#page-markets.active) .ticker{display:none!important}
+#page-markets .markets-header{display:none!important}
+#page-markets .stag{display:none!important}
+#page-markets .stitle{display:none!important}
+#page-markets .ssub{display:none!important}
 </style>
 <script defer src="https://cdn.vercel-insights.com/v1/speed-insights/script.js"></script></head>
 <body>
@@ -1128,7 +1136,7 @@ function sw(id,btn){
 
 <script>
 // ── PAGE SWITCHING ──
-function showPage(name, btnEl) {
+function showPage(id,el){document.querySelector(".ticker").style.display=id==="home"?"":"none";return _showPage(id,el);}function _showPage(name, btnEl) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
