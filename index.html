@@ -637,6 +637,9 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 #page-markets .tabs{display:flex!important;flex-wrap:wrap;gap:8px!important;padding:20px 30px!important;background:rgba(3,9,20,.97)!important;border-bottom:1px solid rgba(0,229,255,.07)!important;}
 #page-markets .tab{flex:1;min-width:120px;max-width:220px;padding:14px 10px!important;font-size:9px!important;letter-spacing:2px!important;border-radius:8px!important;}
 #page-markets .markets-page{padding:0!important;}
+
+.page.active ~ * .ticker, body:not(:has(#page-home.active)) .ticker{display:none!important}
+#page-home.active ~ .ticker{display:block!important}
 </style>
 <script defer src="https://cdn.vercel-insights.com/v1/speed-insights/script.js"></script></head>
 <body>
@@ -1145,7 +1148,7 @@ function sw(id,btn){var wrap=document.getElementById("page-markets");wrap.queryS
 
 <script>
 // ── PAGE SWITCHING ──
-function showPage_old(name, btnEl) {
+function showPage(name, btnEl) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
