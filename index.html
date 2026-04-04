@@ -629,6 +629,9 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 @media(max-width:960px){#page-markets .tabs{grid-template-columns:repeat(3,1fr)!important;padding:20px!important}}
 @media(max-width:580px){#page-markets .tabs{grid-template-columns:repeat(2,1fr)!important;padding:14px!important}}
 
+
+#page-markets .tabs{padding:30px 40px!important;gap:16px!important;}
+#page-markets .tab{padding:20px 10px!important;font-size:10px!important;}
 </style>
 <script defer src="https://cdn.vercel-insights.com/v1/speed-insights/script.js"></script></head>
 <body>
@@ -902,7 +905,7 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 
 </div>
 <script>
-function sw(id,btn){document.querySelectorAll(".panel").forEach(p=>p.style.display="none");document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));document.getElementById("p-"+id).style.display="block";btn.classList.add("on");});document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));document.getElementById("p-"+id).style.display="block";btn.classList.add("on");}
+function sw(id,btn){var pm=document.getElementById("page-markets");pm.querySelectorAll(".panel").forEach(p=>p.style.display="none");pm.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));document.getElementById("p-"+id).style.display="block";btn.classList.add("on");});document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));document.getElementById("p-"+id).style.display="block";btn.classList.add("on");}
 </script></div></div>
 
 
