@@ -3,162 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#020912"><style>body{background:#020912;color:#cfd8dc;font-family:Inter,sans-serif;}nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(2,9,18,.97);border-bottom:1px solid rgba(0,229,255,.15);}
-/*v12*/
-/* TABS */
-.tabs{display:flex;background:var(--s1);border-bottom:1px solid var(--bx);overflow-x:auto;scrollbar-width:none}
-.tabs::-webkit-scrollbar{display:none}
-.tab{flex-shrink:0;padding:17px 24px;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--t3);cursor:pointer;border:none;background:none;transition:all .25s;border-bottom:2.5px solid transparent;white-space:nowrap}
-.tab:hover{color:var(--c)}.tab.on{color:var(--c);border-bottom-color:var(--c);background:rgba(0,229,255,.04)}
-
-/* PANEL */
-.panel{display:none}.panel.show{display:flex;flex-direction:column}
-
-/* BODY */
-.pbody{
-  display:grid;
-  grid-template-columns:50% 50%;
-  min-height:clamp(340px,42vw,460px);
-  background:linear-gradient(115deg,#020912 48%,#021220 100%);
-  overflow:hidden;
-}
-
-/* LEFT TEXT — no gap, content fills naturally */
-.v12fg{
-  padding:clamp(24px,3vw,40px) clamp(24px,3.5vw,52px) clamp(14px,1.8vw,22px);
-  display:flex;flex-direction:column;
-  justify-content:center;
-  gap:clamp(8px,1.1vw,13px);
-  position:relative;z-index:5;
-}
-.tag{
-  font-size:clamp(9px,1vw,11px);letter-spacing:3.5px;color:var(--c);
-  display:flex;align-items:center;gap:10px;
-}
-.tag::before{content:'';width:26px;height:1px;background:var(--c)}
-.v12fg h1{
-  font-size:clamp(30px,4.2vw,54px);
-  font-weight:700;color:#fff;line-height:1.1;
-  letter-spacing:-1px;
-}
-.v12fg p{
-  font-size:clamp(13px,1.3vw,15px);
-  color:var(--t2);line-height:1.75;
-  max-width:100%;
-}
-.btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn-p{
-  padding:clamp(10px,1.2vw,14px) clamp(24px,2.8vw,38px);
-  background:var(--c);color:#020912;border:none;border-radius:6px;
-  font-weight:700;font-size:clamp(13px,1.2vw,15px);cursor:pointer;
-  letter-spacing:.5px;transition:all .22s;
-  box-shadow:0 0 30px rgba(0,229,255,.35);
-}
-.btn-p:hover{background:#33ecff;box-shadow:0 0 55px rgba(0,229,255,.65);transform:translateY(-2px)}
-.btn-s{
-  padding:clamp(10px,1.2vw,14px) clamp(24px,2.8vw,38px);
-  background:transparent;color:rgba(255,255,255,.85);
-  border:1.5px solid rgba(255,255,255,.22);border-radius:6px;
-  font-size:clamp(13px,1.2vw,15px);cursor:pointer;transition:all .22s;
-}
-.btn-s:hover{border-color:rgba(255,255,255,.55);color:#fff}
-
-/* RIGHT SCENE */
-.scene{
-  position:relative;overflow:visible;
-  width:100%;height:100%;
-}
-
-/* CARD UNITS */
-.cu{position:absolute;display:flex;flex-direction:column;align-items:center}
-
-/* FOREX 4-CARD */
-.ctop{left:50%;top:8%;transform:translateX(-55%);z-index:5;animation:fTop 4.5s ease-in-out infinite}
-.ctop .ci{width:clamp(220px,26vw,370px)}
-.cback1{left:2%;top:45%;z-index:3;animation:fA 5.8s ease-in-out infinite .3s}
-.cback1 .ci{width:clamp(185px,22vw,310px);opacity:.94}
-.cback2{left:42%;top:48%;z-index:2;animation:fB 6.5s ease-in-out infinite .9s}
-.cback2 .ci{width:clamp(160px,19vw,270px);opacity:.87}
-.cback3{right:0%;top:55%;z-index:1;animation:fC 7s ease-in-out infinite 1.5s}
-.cback3 .ci{width:clamp(138px,16.5vw,235px);opacity:.80}
-
-/* 3-CARD */
-.c1{left:5%;top:10%;z-index:3;animation:fTop 4.8s ease-in-out infinite .1s}
-.c1 .ci{width:clamp(210px,25vw,350px)}
-.c2{left:38%;top:40%;z-index:2;animation:fA 6.2s ease-in-out infinite .6s}
-.c2 .ci{width:clamp(178px,21vw,298px);opacity:.9}
-.c3{right:1%;top:56%;z-index:1;animation:fB 7s ease-in-out infinite 1.2s}
-.c3 .ci{width:clamp(150px,18vw,255px);opacity:.82}
-
-/* ANIMATIONS */
-@keyframes fTop{
-  0%,100%{transform:translateX(-55%) rotate(-5deg) translateY(0)}
-  30%{transform:translateX(-55%) rotate(-5deg) translateY(-30px)}
-  62%{transform:translateX(-55%) rotate(-5deg) translateY(-42px)}
-  80%{transform:translateX(-55%) rotate(-5deg) translateY(-20px)}
-}
-@keyframes fA{
-  0%,100%{transform:rotate(-16deg) translateY(0)}
-  38%{transform:rotate(-16deg) translateY(-22px)}
-  68%{transform:rotate(-16deg) translateY(-32px)}
-}
-@keyframes fB{
-  0%,100%{transform:rotate(4deg) translateY(0)}
-  42%{transform:rotate(4deg) translateY(-18px)}
-  72%{transform:rotate(4deg) translateY(-26px)}
-}
-@keyframes fC{
-  0%,100%{transform:rotate(14deg) translateY(-50%)}
-  46%{transform:rotate(14deg) translateY(calc(-50% - 15px))}
-  76%{transform:rotate(14deg) translateY(calc(-50% - 22px))}
-}
-
-/* BOTTOM BAR — ONE clean row */
-.fbar{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:1px solid var(--bx);
-  background:rgba(3,9,20,.97);
-}
-.fb{
-  padding:clamp(10px,1.2vw,15px) clamp(14px,1.8vw,22px);
-  border-right:1px solid var(--bx);
-  display:flex;align-items:center;gap:12px;
-}
-.fb:last-child{border-right:none}
-.fb em{font-size:clamp(18px,2vw,24px);font-style:normal;opacity:.65}
-.fb small{display:block;font-size:clamp(8px,.9vw,11px);color:var(--t3);letter-spacing:.5px;margin-bottom:3px;text-transform:uppercase;font-style:normal}
-.fb strong{display:block;font-size:clamp(12px,1.3vw,16px);font-weight:700;color:#fff}
-
-/* RESPONSIVE */
-@media(max-width:960px){
-  .pbody{grid-template-columns:1fr;min-height:auto}
-  .v12fg{padding:30px 24px 24px}
-  .scene{min-height:340px}
-  .fbar{grid-template-columns:repeat(2,1fr)}
-  .fb:nth-child(2){border-right:none}
-  .fb:nth-child(3){border-top:1px solid var(--bx)}
-  .ctop .ci{width:clamp(160px,38vw,240px)}
-  .cback1 .ci{width:clamp(135px,32vw,200px)}
-  .cback2 .ci{width:clamp(115px,28vw,172px)}
-  .cback3 .ci{width:clamp(98px,24vw,148px)}
-  .c1 .ci{width:clamp(155px,36vw,225px)}
-  .c2 .ci{width:clamp(130px,30vw,190px)}
-  .c3 .ci{width:clamp(110px,26vw,160px)}
-}
-@media(max-width:580px){
-  .tab{padding:12px 14px;font-size:9.5px;letter-spacing:1.5px}
-  .pbody{grid-template-columns:1fr}
-  .scene{min-height:260px}
-  .btns{flex-direction:column;gap:10px;max-width:280px}
-}
-
-#page-markets .markets-header{display:none!important}
-#page-markets .markets-page div[style]{border:none!important;border-radius:0!important}
-#page-markets .tabs{display:grid!important;grid-template-columns:repeat(5,1fr);gap:10px;padding:0 0 24px!important;background:transparent!important;border-bottom:none!important;overflow:visible!important}
-#page-markets .tab{padding:clamp(16px,2vw,22px) 10px!important;font-size:clamp(9px,.9vw,11px)!important;letter-spacing:1.5px!important;text-align:center;background:rgba(5,15,30,.8)!important;border:1px solid rgba(0,229,255,.08)!important;border-radius:10px!important;border-bottom:2.5px solid transparent!important;flex-shrink:unset!important;white-space:normal!important;line-height:1.5;transition:all .3s}
-#page-markets .tab:hover{border-color:rgba(0,229,255,.25)!important;background:rgba(0,229,255,.05)!important;transform:translateY(-3px);color:var(--c)!important}
-#page-markets .tab.on{border-color:var(--c)!important;background:rgba(0,229,255,.1)!important;color:var(--c)!important;box-shadow:0 0 24px rgba(0,229,255,.15)}
-@media(max-width:900px){#page-markets .tabs{grid-template-columns:repeat(3,1fr)!important}}
-@media(max-width:580px){#page-markets .tabs{grid-template-columns:repeat(2,1fr)!important}#page-markets .markets-page{padding:16px 16px 48px!important}}
 </style>
 <title>CR Industries | Financial Innovation & Growth</title>
 <link rel="stylesheet" href="output.css"><link rel="icon" href="logo.png">
@@ -629,21 +473,12 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 #page-markets .tab.on{color:var(--accent)!important;background:rgba(0,229,255,.09)!important;border-color:rgba(0,229,255,.55)!important;border-bottom-color:var(--accent)!important;box-shadow:0 0 30px rgba(0,229,255,.2)!important;transform:translateY(-3px)!important}
 @media(max-width:960px){#page-markets .tabs{grid-template-columns:repeat(3,1fr)!important;padding:20px!important}}
 @media(max-width:580px){#page-markets .tabs{grid-template-columns:repeat(2,1fr)!important;padding:14px!important}}
-
-
-#page-markets .tabs{padding:30px 40px!important;gap:16px!important;}
 #page-markets .tab{padding:20px 10px!important;font-size:10px!important;}
-
-#page-markets .tabs{display:flex!important;flex-wrap:wrap;gap:8px!important;padding:20px 30px!important;background:rgba(3,9,20,.97)!important;border-bottom:1px solid rgba(0,229,255,.07)!important;}
 #page-markets .tab{flex:1;min-width:120px;max-width:220px;padding:14px 10px!important;font-size:9px!important;letter-spacing:2px!important;border-radius:8px!important;}
 #page-markets .markets-page{padding:0!important;}
 
 .page.active ~ * .ticker, body:not(:has(#page-home.active)) .ticker{display:none!important}
 #page-home.active ~ .ticker{display:block!important}
-
-#page-markets.active ~ .ticker, #page-whyus.active ~ .ticker, #page-ib.active ~ .ticker, #page-community.active ~ .ticker, #page-plans.active ~ .ticker{display:none!important}
-
-#page-markets .markets-header{display:none!important}
 #page-markets .markets-page{padding:0!important}
 #page-markets .markets-page>div{display:flex!important;flex-direction:row!important;border:none!important;border-radius:0!important;min-height:calc(100vh - 130px)!important;overflow:hidden!important}
 #page-markets .tabs{display:flex!important;flex-direction:column!!important;width:240px!important;min-width:240px!important;flex-shrink:0!important;background:rgba(2,9,18,.98)!important;border-right:1px solid rgba(0,229,255,.08)!important;border-bottom:none!important;padding:48px 0!important;overflow:visible!important}
@@ -652,6 +487,22 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 #page-markets .tab.on{color:var(--accent)!important;border-left:3px solid var(--accent)!important;background:rgba(0,229,255,.07)!important;box-shadow:none!important}
 #page-markets .panel.show{flex:1!important;display:flex!important;flex-direction:column!important}
 @media(max-width:768px){#page-markets .markets-page>div{flex-direction:column!!important}#page-markets .tabs{width:100%!important;flex-direction:row!important;overflow-x:auto!important;padding:0!important;border-right:none!important;border-bottom:1px solid rgba(0,229,255,.08)!important}#page-markets .tab{padding:14px 20px!important;border-left:none!important;border-bottom:3px solid transparent!important}#page-markets .tab.on{border-left:none!important;border-bottom:3px solid var(--accent)!important}}
+
+/* === MARKETS PAGE === */
+#page-markets .markets-header{display:none!important}
+#page-markets .markets-page{padding:0!important}
+#page-markets .markets-page>div{display:flex!important;flex-direction:row!important;border:none!important;border-radius:0!important;min-height:calc(100vh - 130px)!important;overflow:hidden!;}
+#page-markets .tabs{display:flex!important;flex-direction:column!important;width:240px!important;min-width:240px!important;flex-shrink:0!important;background:rgba(2,9,18,.98)!important;border-right:1px solid rgba(0,229,255,.08)!important;border-bottom:none!important;padding:48px 0!important;overflow:visible!important;grid-template-columns:unset!important}
+#page-markets .tab{padding:20px 32px!important;text-align:left!important;font-size:12px!important;letter-spacing:1.5px!important;border:none!important;border-left:3px solid transparent!important;white-space:nowrap!important;color:rgba(207,216,220,.45)!!important;background:transparent!important;transform:none!important;box-shadow:none!important;border-radius:0!important}
+#page-markets .tab:hover{color:var(--accent)!important;border-left:3px solid rgba(0,229,255,.4)!important;background:rgba(0,229,255,.04)!important;transform:none!important}
+#page-markets .tab.on{color:var(--accent)!important;border-left:3px solid var(--accent)!important;background:rgba(0,229,255,.07)!important}
+#page-markets .panel.show{flex:1!important;display:flex!important;flex-direction:column!important}
+#page-markets .tag{display:none!important}
+@media(max-width:768px){
+#page-markets .markets-page>div{flex-direction:column!important}
+#page-markets .tabs{width:100%!important;flex-direction:row!important;overflow-x:auto!important;padding:0!important;border-right:none!important;border-bottom:1px solid rgba(0,229,255,.08)!important}
+#page-markets .tab{padding:14px 20px!important;border-left:none!important;border-bottom:3px solid transparent!important}
+#page-markets .tab.on{border-left:none!important;border-bottom:3px solid var(--accent)!important}}
 </style>
 <script defer src="https://cdn.vercel-insights.com/v1/speed-insights/script.js"></script></head>
 <body>
