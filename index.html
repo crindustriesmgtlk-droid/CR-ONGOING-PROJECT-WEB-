@@ -914,7 +914,7 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 </div>
 
 <script>
-function showPage(id,btn){const pages=document.querySelectorAll(".page");pages.forEach(p=>p.classList.remove("active"));document.getElementById("page-"+id).classList.add("active");const ticker=document.querySelector(".ticker");if(ticker)ticker.style.display=id==="home"?"block":"none";const navBtns=document.querySelectorAll(".nav-tabs button, .nav-mobile button");navBtns.forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");}
+function showPage(id,btn){const pages=document.querySelectorAll(".page");pages.forEach(p=>p.classList.remove("active"));document.getElementById("page-"+id).classList.add("active");var tk=document.querySelector(".ticker");if(tk)tk.style.display=id==="home"?"block":"none";const ticker=document.querySelector(".ticker");if(ticker)ticker.style.display=id==="home"?"block":"none";const navBtns=document.querySelectorAll(".nav-tabs button, .nav-mobile button");navBtns.forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");}
 
 function sw(id,btn){var wrap=document.getElementById("page-markets");wrap.querySelectorAll(".panel").forEach(function(p){p.style.display="none";});wrap.querySelectorAll(".tab").forEach(function(t){t.classList.remove("on");});document.getElementById("p-"+id).style.display="block";btn.classList.add("on");});document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));document.getElementById("p-"+id).style.display="block";btn.classList.add("on");}
 </script></div></div>
