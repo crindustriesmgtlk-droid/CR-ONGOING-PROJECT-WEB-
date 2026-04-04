@@ -821,7 +821,7 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
   <button class="tab" onclick="sw('crypto',this)">CRYPTO CFD</button>
 </div>
 
-<div id="p-forex" class="panel" style="display:none">
+<div id="p-forex" class="panel" style="display:block" style="display:none">
   <div class="pbody">
     <div class="v12fg">
       <div class="tag">FOREX CFD</div>
@@ -838,7 +838,7 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
   <div class="fbar"><div class="fb"><em>⚡</em><div><small>EXECUTION</small><strong>Ultra-fast</strong></div></div><div class="fb"><em>💳</em><div><small>WITHDRAWALS</small><strong>Instant</strong></div></div><div class="fb"><em>💰</em><div><small>PAYMENTS</small><strong>Fee-free</strong></div></div><div class="fb"><em>🕐</em><div><small>SUPPORT</small><strong>24/7</strong></div></div></div>
 </div>
 
-<div id="p-commodities" class="panel" style="display:none">
+<div id="p-commodities" class="panel" style="display:none" style="display:none">
   <div class="pbody">
     <div class="v12fg">
       <div class="tag">COMMODITIES CFD</div>
@@ -854,7 +854,7 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
   <div class="fbar"><div class="fb"><em>⚡</em><div><small>EXECUTION</small><strong>Ultra-fast</strong></div></div><div class="fb"><em>🥇</em><div><small>XAU SPREAD</small><strong>From 0.3</strong></div></div><div class="fb"><em>💰</em><div><small>COMMISSION</small><strong>$0</strong></div></div><div class="fb"><em>🕐</em><div><small>SUPPORT</small><strong>24/7</strong></div></div></div>
 </div>
 
-<div id="p-stocks" class="panel" style="display:none">
+<div id="p-stocks" class="panel" style="display:none" style="display:none">
   <div class="pbody">
     <div class="v12fg">
       <div class="tag">STOCKS CFD</div>
@@ -870,7 +870,7 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
   <div class="fbar"><div class="fb"><em>⚡</em><div><small>EXECUTION</small><strong>Ultra-fast</strong></div></div><div class="fb"><em>📈</em><div><small>STOCKS</small><strong>500+</strong></div></div><div class="fb"><em>💰</em><div><small>COMMISSION</small><strong>Low</strong></div></div><div class="fb"><em>🕐</em><div><small>SUPPORT</small><strong>24/7</strong></div></div></div>
 </div>
 
-<div id="p-indices" class="panel" style="display:none">
+<div id="p-indices" class="panel" style="display:none" style="display:none">
   <div class="pbody">
     <div class="v12fg">
       <div class="tag">INDICES CFD</div>
@@ -886,7 +886,7 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
   <div class="fbar"><div class="fb"><em>⚡</em><div><small>EXECUTION</small><strong>Ultra-fast</strong></div></div><div class="fb"><em>🌐</em><div><small>INDICES</small><strong>20+</strong></div></div><div class="fb"><em>💰</em><div><small>COMMISSION</small><strong>$0</strong></div></div><div class="fb"><em>🕐</em><div><small>SUPPORT</small><strong>24/7</strong></div></div></div>
 </div>
 
-<div id="p-crypto" class="panel" style="display:none">
+<div id="p-crypto" class="panel" style="display:none" style="display:none">
   <div class="pbody">
     <div class="v12fg">
       <div class="tag">CRYPTO CFD</div>
@@ -904,11 +904,7 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 
 </div>
 <script>
-function sw(id,btn){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
-  document.getElementById('p-'+id).classList.add('show');btn.classList.add('on');
-}
+function sw(id,btn){document.querySelectorAll(".panel").forEach(p=>{p.style.display="none";});document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));document.getElementById("p-"+id).style.display="block";btn.classList.add("on");}
 </script></div></div>
 
 
