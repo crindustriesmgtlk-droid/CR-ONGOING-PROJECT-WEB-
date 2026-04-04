@@ -666,6 +666,11 @@ body:has(#page-markets.active) .ticker{display:none!important}
 @media(max-width:480px){#page-markets .tab{font-size:9px!important;padding:11px 12px!important;letter-spacing:1px!important}#page-markets .fbar{grid-template-columns:repeat(2,1fr)!important}#page-markets .v12fg h1{font-size:clamp(24px,7vw,36px)!important}}
 
 @media(max-width:768px){#page-markets .scene{display:none!important}#page-markets .pbody{grid-template-columns:1fr!important;min-height:auto!important}#page-markets .v12fg{padding:28px 20px!important}#page-markets .fbar{grid-template-columns:repeat(2,1fr)!important}#page-markets .btns{flex-direction:column!important;max-width:100%!important}#page-markets .btn-p,#page-markets .btn-s{width:100%!important;text-align:center!important}}
+
+.nav-mobile.open~.ticker,.nav-mobile.open+.ticker{display:none!important}
+.nav-mobile{z-index:998!important}
+.ticker{z-index:499!important}
+.hamburger{z-index:999!important}
 </style>
 <script defer src="https://cdn.vercel-insights.com/v1/speed-insights/script.js"></script></head>
 <body>
