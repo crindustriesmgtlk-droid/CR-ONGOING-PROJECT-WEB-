@@ -163,7 +163,8 @@
 <title>CR Industries | Financial Innovation & Growth</title>
 <link rel="stylesheet" href="output.css"><link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;500;600&display=swap">
-<script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+<script defer src="https://cdn.vercel-insights.com/v1/script.js">
+document.addEventListener("DOMContentLoaded",function(){var t=document.querySelector(".ticker");if(t){document.querySelectorAll(".nav-tabs button, .nav-mobile button").forEach(function(b){b.addEventListener("click",function(){var id=b.getAttribute("onclick");if(id&&id.includes("home")){t.style.display="block";}else{t.style.display="none";}});})}});</script>
 <style>
 :root{--navy:#020912;--blue:#0d47a1;--cyan:#00b4d8;--accent:#00e5ff;--silver:#cfd8dc;--white:#fff;--green:#4caf50;--red:#ef5350;--c:#00e5ff;--bg:#020912;--s1:#030c1b;--t2:rgba(207,216,220,.8);--t3:rgba(207,216,220,.38);--bx:rgba(0,229,255,.1);}
 *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
@@ -912,7 +913,7 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 <script>
 function showPage(id,btn){const pages=document.querySelectorAll(".page");pages.forEach(p=>p.classList.remove("active"));document.getElementById("page-"+id).classList.add("active");const ticker=document.querySelector(".ticker");if(ticker)ticker.style.display=id==="home"?"block":"none";const navBtns=document.querySelectorAll(".nav-tabs button, .nav-mobile button");navBtns.forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");}
 
-function sw(id,btn){var pm=document.getElementById("page-markets");pm.querySelectorAll(".panel").forEach(p=>p.style.display="none");pm.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));document.getElementById("p-"+id).style.display="block";btn.classList.add("on");});document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));document.getElementById("p-"+id).style.display="block";btn.classList.add("on");}
+function sw(id,btn){var wrap=document.getElementById("page-markets");wrap.querySelectorAll(".panel").forEach(function(p){p.style.display="none";});wrap.querySelectorAll(".tab").forEach(function(t){t.classList.remove("on");});document.getElementById("p-"+id).style.display="block";btn.classList.add("on");});document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));document.getElementById("p-"+id).style.display="block";btn.classList.add("on");}
 </script></div></div>
 
 
