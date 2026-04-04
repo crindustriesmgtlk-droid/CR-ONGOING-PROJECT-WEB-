@@ -632,6 +632,10 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 
 #page-markets .tabs{padding:30px 40px!important;gap:16px!important;}
 #page-markets .tab{padding:20px 10px!important;font-size:10px!important;}
+
+#page-markets .tabs{display:flex!important;flex-wrap:wrap;gap:8px!important;padding:20px 30px!important;background:rgba(3,9,20,.97)!important;border-bottom:1px solid rgba(0,229,255,.07)!important;}
+#page-markets .tab{flex:1;min-width:120px;max-width:220px;padding:14px 10px!important;font-size:9px!important;letter-spacing:2px!important;border-radius:8px!important;}
+#page-markets .markets-page{padding:0!important;}
 </style>
 <script defer src="https://cdn.vercel-insights.com/v1/speed-insights/script.js"></script></head>
 <body>
@@ -904,7 +908,10 @@ footer{position:relative;z-index:1;padding:44px 60px;border-top:1px solid rgba(0
 </div>
 
 </div>
+
 <script>
+function showPage(id,btn){const pages=document.querySelectorAll(".page");pages.forEach(p=>p.classList.remove("active"));document.getElementById("page-"+id).classList.add("active");const ticker=document.querySelector(".ticker");if(ticker)ticker.style.display=id==="home"?"block":"none";const navBtns=document.querySelectorAll(".nav-tabs button, .nav-mobile button");navBtns.forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");}
+
 function sw(id,btn){var pm=document.getElementById("page-markets");pm.querySelectorAll(".panel").forEach(p=>p.style.display="none");pm.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));document.getElementById("p-"+id).style.display="block";btn.classList.add("on");});document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));document.getElementById("p-"+id).style.display="block";btn.classList.add("on");}
 </script></div></div>
 
@@ -1137,7 +1144,7 @@ function sw(id,btn){var pm=document.getElementById("page-markets");pm.querySelec
 
 <script>
 // ── PAGE SWITCHING ──
-function showPage(name, btnEl) {
+function showPage_old(name, btnEl) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
