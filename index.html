@@ -654,6 +654,11 @@ body:has(#page-markets.active) .ticker{display:none!important}
 
 #page-markets .markets-page>.markets-header{display:none!important;height:0!important;margin:0!important;padding:0!important;overflow:hidden!important;min-height:0!important}
 #page-markets.page{padding-top:72px!important}
+
+#page-markets.page{padding-top:72px!important}
+@media(max-width:1023px){#page-markets .tabs{width:200px!important;min-width:200px!important}}
+@media(max-width:768px){#page-markets .markets-page>div{flex-direction:column!important}#page-markets .tabs{width:100%!important;flex-direction:row!important;overflow-x:auto!important;padding:0!important;border-right:none!important;border-bottom:1px solid rgba(0,229,255,.08)!important}#page-markets .tab{padding:14px 18px!important;border-left:none!important;border-bottom:3px solid transparent!important;white-space:nowrap!important}#page-markets .tab.on{border-left:none!important;border-bottom:3px solid var(--accent)!important}#page-markets .pbody{grid-template-columns:1fr!important}#page-markets .scene{min-height:280px!important}}
+@media(max-width:480px){#page-markets .tab{font-size:9px!important;padding:12px 12px!important;letter-spacing:1px!important}}
 </style>
 <script defer src="https://cdn.vercel-insights.com/v1/speed-insights/script.js"></script></head>
 <body>
