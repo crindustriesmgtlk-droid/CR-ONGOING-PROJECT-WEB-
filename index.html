@@ -697,6 +697,15 @@ body:has(#page-markets.active) .ticker{display:none!important}
 
 
 #p-commodities .ctop,#p-stocks .ctop,#p-indices .ctop,#p-crypto .ctop{filter:drop-shadow(0 0 28px rgba(0,229,255,.55)) drop-shadow(0 0 60px rgba(0,180,216,.35))!important}
+
+#p-commodities .ctop,#p-stocks .ctop,#p-indices .ctop,#p-crypto .ctop{left:50%!important;top:8%!important;transform:translateX(-55%) rotate(-5deg) translateY(0)!important;z-index:5!important;animation:fTop 4.5s ease-in-out infinite!important}
+#p-commodities .ctop .ci,#p-stocks .ctop .ci,#p-indices .ctop .ci,#p-crypto .ctop .ci{width:clamp(220px,26vw,370px)!important}
+#p-commodities .cback1,#p-stocks .cback1,#p-indices .cback1,#p-crypto .cback1{left:2%!important;top:45%!important;z-index:3!important;animation:fA 5.8s ease-in-out infinite .3s!important}
+#p-commodities .cback1 .ci,#p-stocks .cback1 .ci,#p-indices .cback1 .ci,#p-crypto .cback1 .ci{width:clamp(185px,22vw,310px)!important;opacity:.94!important}
+#p-commodities .cback2,#p-stocks .cback2,#p-indices .cback2,#p-crypto .cback2{left:42%!important;top:48%!important;z-index:2!important;animation:fB 6.5s ease-in-out infinite .9s!important}
+#p-commodities .cback2 .ci,#p-stocks .cback2 .ci,#p-indices .cback2 .ci,#p-crypto .cback2 .ci{width:clamp(160px,19vw,270px)!important;opacity:.87!important}
+#p-commodities .cback3,#p-stocks .cback3,#p-indices .cback3,#p-crypto .cback3{right:0%!important;top:55%!important;z-index:1!important;animation:fC 7s ease-in-out infinite 1.5s!important}
+#p-commodities .cback3 .ci,#p-stocks .cback3 .ci,#p-indices .cback3 .ci,#p-crypto .cback3 .ci{width:clamp(138px,16.5vw,235px)!important;opacity:.80!important}
 </style>
 <script defer src="https://cdn.vercel-insights.com/v1/speed-insights/script.js"></script></head>
 <body>
